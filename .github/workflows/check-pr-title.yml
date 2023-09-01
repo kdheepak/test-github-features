@@ -1,0 +1,22 @@
+name: Check PR title
+
+on:
+  pull_request:
+    types:
+      - opened
+      - synchronize
+      - reopened
+      - edited
+
+jobs:
+  check-title:
+    runs-on: ubuntu-latest
+    steps:
+    - name: Check PR title
+      run: |
+        title="${{ github.event.pull_request.title }}"
+        if ! echo "$title" | grep -qE '^(build|chore|ci|docs|style|refactor|perf|test|feat|fix): '; then
+          echo "error: PR title does not follow the Conventional Commits guidelines"
+          exit 1
+        fi
+
