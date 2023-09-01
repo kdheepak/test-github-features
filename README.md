@@ -1,4 +1,4 @@
-# test-github-features
+# github-features
 
 Adding new line
 Another line here
