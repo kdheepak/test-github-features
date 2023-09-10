@@ -50,12 +50,15 @@ jobs:
       id: check_breaking_change
       run: |
         title="${{ github.event.pull_request.title }}"
-        echo "$title"
-        if ! echo "$title" | grep -qE '^(build|chore|ci|docs|feat|fix|perf|refactor|revert|style|test)(\(\w+\))?!:'; then
-          echo "Matched breaking change pattern"  # Debug message
+        pattern='^(build|chore|ci|docs|feat|fix|perf|refactor|revert|style|test)(\(\w+\))?!:'
+        # Check if pattern matches
+        echo "$title" | grep -qE "$pattern"
+        matched=$?
+        if [ $matched -eq 0 ]; then
+          echo "Matched breaking change pattern"
           echo "breaking_change=true" >> $GITHUB_OUTPUT
         else
-          echo "Did not match breaking change pattern"  # Debug message
+          echo "Did not match breaking change pattern"
           echo "breaking_change=false" >> $GITHUB_OUTPUT
         fi
     - name: Print Output
