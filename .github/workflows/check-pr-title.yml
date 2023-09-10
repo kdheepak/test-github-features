@@ -10,9 +10,8 @@ on:
 
 
 permissions:
-  pull-requests:
-    - read
-    - write
+  pull-requests: read
+  issues: write
 
 jobs:
   check-title:
