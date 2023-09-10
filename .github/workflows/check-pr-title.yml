@@ -50,9 +50,9 @@ jobs:
       run: |
         title="${{ github.event.pull_request.title }}"
         if ! echo "$title" | grep -qE '^(build|chore|ci|docs|feat|fix|perf|refactor|revert|style|test)(\(\w+\))?!: '; then
-          run: echo "breaking_change=true" >> $GITHUB_OUTPUT
+          echo "breaking_change=true" >> $GITHUB_OUTPUT
         else
-          run: echo "breaking_change=false" >> $GITHUB_OUTPUT
+          echo "breaking_change=false" >> $GITHUB_OUTPUT
         fi
 
     - name: Add label
