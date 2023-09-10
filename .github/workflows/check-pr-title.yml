@@ -52,9 +52,7 @@ jobs:
         title="${{ github.event.pull_request.title }}"
         pattern='^(build|chore|ci|docs|feat|fix|perf|refactor|revert|style|test)(\(\w+\))?!:'
         # Check if pattern matches
-        echo "$title" | grep -qE "$pattern"
-        matched=$?
-        if [ $matched -eq 0 ]; then
+        if echo "$title" | grep -qE "$pattern";; then
           echo "Matched breaking change pattern"
           echo "breaking_change=true" >> $GITHUB_OUTPUT
         else
