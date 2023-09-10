@@ -47,9 +47,9 @@ jobs:
     runs-on: ubuntu-latest
     steps:
     - name: Check breaking change label
+      id: check_breaking_change
       run: |
         title="${{ github.event.pull_request.title }}"
-        echo "$title" | grep -qE '^(build|chore|ci|docs|feat|fix|perf|refactor|revert|style|test)(\(\w+\))?!: '
         if ! echo "$title" | grep -qE '^(build|chore|ci|docs|feat|fix|perf|refactor|revert|style|test)(\(\w+\))?!: '; then
           echo "breaking_change=true" >> $GITHUB_OUTPUT
         else
