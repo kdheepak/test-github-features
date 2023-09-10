@@ -67,6 +67,7 @@ jobs:
       if: steps.check_breaking_change.outputs.breaking_change == 'true'
       uses: actions/github-script@v6
       with:
+        github-token: ${{ secrets.GITHUB_TOKEN }}
         script: |
           github.rest.issues.addLabels({
             issue_number: context.issue.number,
