@@ -50,8 +50,7 @@ jobs:
     - name: Check breaking change label
       id: check_breaking_change
       run: |
-        title="${{ github.event.pull_request.title }}"
-        escaped_title=$(printf '%q' "$title")
+        escaped_title=$(printf '%q' "${{ github.event.pull_request.title }}")
         pattern='^(build|chore|ci|docs|feat|fix|perf|refactor|revert|style|test)(\(\w+\))?!:'
         # Check if pattern matches
         if echo "$escaped_title" | grep -qE "$pattern"; then
