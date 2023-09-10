@@ -55,7 +55,8 @@ jobs:
         else
           echo "breaking_change=false" >> $GITHUB_OUTPUT
         fi
-
+    - name: Print Output
+      run: cat $GITHUB_OUTPUT
     - name: Add label
       if: steps.check_breaking_change.outputs.breaking_change == 'true'
       uses: actions/github-script@v6
